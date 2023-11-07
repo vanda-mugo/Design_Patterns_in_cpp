@@ -5,33 +5,38 @@
 Deleting a derived class object using a pointer of base class type that has a non-virtual destructor results in undefined behavior. To correct this situation, the base class should be defined with a virtual destructor. 
 For example, the following program results in undefined behavior. 
 */
+
+
 #include <iostream>
 
 using namespace std;
 
-class base {
+class Base 
+{
 public:
-	base()	 
+	Base()	 
 	{ cout << "Constructing base\n"; }
-	~base()
+	~Base()
 	{ cout<< "Destructing base\n"; }	 
 };
 
-class derived: public base {
+class Derived: public Base
+{
 public:
-	derived()	 
+	Derived()	 
 	{ cout << "Constructing derived\n"; }
-	~derived()
+	~Derived()
 	{ cout << "Destructing derived\n"; }
 };
 
 int main()
-derived *d = new derived(); 
+{
+Derived * d = new Derived(); 
 // a pointer to an object of type derived in this case which is 
 // being dynamically allocated in the heap memory using the new dynamic 
 // memory allocation in c++
-
-base *b = d;
+//delete d;
+Base *b = d;
 /*
 in this we are creating an object of type base and this will be a pointer
 to this type . we are assigning this pointer to be equal to the already
@@ -39,9 +44,12 @@ created d which is a pointer . in this case both the base object and the
 derived object will be pointing the same memory location 
 */
 delete b;
-getchar();
-return 0;
+//getchar();
+return 1;
+
 }
+
+
 
 
 /*
@@ -50,6 +58,10 @@ Constructing base
 Constructing derived
 Destructing base
 */
+
+// the above behaviour is undefined since we have an object of type derived that is not being deleted as expected 
+// in this case what would happen if we had some attributes of the derived class that were only initialised within the derived class 
+// or a pointer attribute ,would this in any case lead to a memory leak in the system 
 
 
 
@@ -78,6 +90,7 @@ the call/invocation of the destrcutor is done in the reverse order of the constr
 
 // usinhg virtual destrutor 
 // A program with virtual destructor
+
 #include <iostream>
 
 using namespace std;
@@ -102,10 +115,11 @@ int main()
 {
 derived *d = new derived(); 
 base *b = d;
-delete b;
+delete d;
 getchar();
-return 0;
+return 1;
 }
+
 
 /*
 output
