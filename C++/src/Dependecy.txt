@@ -1,0 +1,47 @@
+Dependency is  the most basic and weakest type of relations between classes, there is dependency between two classes
+if some changes to the definition of one class might result in modification of another class 
+
+dependency usually occurs when you use concrete class names in your code, eg when specifying types in method signatures,
+when instantiating objects via constructor calls , you can make dependency weaker if you make your code dependent on 
+interfaces or abstract classes instead of concrete classes 
+
+dependency in uml diagrams is usually denoted with a dotted line with an arrow at one end 
+
+another definition : dependency refers to the degree to which one piece of code relies on another for correct 
+fucntionality . In terms of oop  dependency is where one class relies on another for its function. 
+
+eg class A is said to be dependent on class B if class A uses class B in some capacity.this could involve calling a 
+method of class B, using a property of class B or creating an instance of B . in simpler terms any changes in teh 
+second class could potentially affect the functionality of the first class 
+
+eg a cart class depends on a product class because the product class is used as a parameter for an add operation in the 
+cart class. In a class diagram, a dependency relationship points from the cart to the product in other words the 
+cart class is the consumer element and the product class is the suplier element. the supplier is independent and a 
+change in the product class may cause a change in the cart class 
+
+a dependency relationship indicates one of the following . 
+a consumer class does one of the following :-
+i . temporarily uses the supplier class that has a global scope
+ii. temporarily uses a supplier class as a parameter for one of its operations 
+iii. temporarily uses a supplier class as a local variable for one of its operations 
+iv. sends message to the supplier class 
+
+c++ source code 
+
+class classCar
+{
+    enumCarMake carMake;
+    structTire carTires[4];
+    classEngine carMotor;
+    public:
+    classCar(); // constructor
+    virtual ~classCar(); // virtual destructor
+    void GetCarLoc( classCarLoc & carLoc);
+};
+
+in the case here its evident that the classCar is dependent on the class carLoc ; so what the relationship would 
+look like would be a dotted line from the dependent class that happens to be the classCar to the independent class 
+that happens to be classCarLoc
+
+
+
