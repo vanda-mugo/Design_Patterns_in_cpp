@@ -1,0 +1,92 @@
+Abstract factory is a creational design pattern that lets you produce families of related product/ related objects
+without specifying their concrete classes 
+
+Imagine that you’re creating a furniture shop simulator. Your
+code consists of classes that represent:
+
+a family of related products say: chair + sofa + coffeetable
+several variants of this family for example products chair + sofa + coffeetable are available in these variants
+modern , victorian and artDeco
+
+The first thing the Abstract Factory pattern suggests is to
+explicitly declare interfaces for each distinct product of the
+product family (e.g., chair, sofa or coffee table). Then you
+can make all variants of products follow those interfaces.note by that this is the family
+the distinct products are the families .
+
+so for example all the chairs variants can implement the chair interface . that is the 
+victorian , the modern or the art deco. so the variants are to implement the chair family
+interface for the distinct changes .
+
+the next move is to declare the abstract factory - this is an interface with a list of creation method
+for all products that are part of the product family  for example createChair, createSofa and createCoffeeTable , this 
+methods must return abstract product types represented by the interfacres we extracted previously that is the chair ,
+sofa and coffee table and so on
+
+Now, how about the product variants? For each variant of
+a product family, we create a separate factory class based
+on the AbstractFactory interface. A factory is a class that
+returns products of a particular kind. For example, the
+ModernFurnitureFactory can only create ModernChair ,
+ModernSofa and ModernCoffeeTable objects.
+
+so note the trick in this is that the abstract factory which has creation method for all the three product types 
+has the creation for all of this three product types which means that the separate factory class will implement
+this but only for one variant and within each of the three diffrent products produced by the factory class of a variant 
+type, this will all implement the three product interfaces 
+
+
+that is as follows 
+
+
+we shall have 3 different interface for the product families that is we shall have the interface for the 
+chair, the sofa and the coffee table 
+so each of this interfaces will have variants based on the three variants that implement this interface 
+
+eg 
+
+<<interface>> Chair : 
+properties of interface :- + hasLegs()
+                           + sitOn()
+
+
+
+so the above is the chair inteface that has the two methods and now the three variants shall implment this inteface
+
+<<class VictorianChair : implements the Chair interface>>
+properties :
+            + hasLegs()
+            + sitOn()
+
+
+<<class ModernChair : implements the Chair interface >>
+properties :
+            + hasLegs()
+            +sitOn()
+
+
+now to create the AbstractFactory interface which will have variant types that implement it 
+
+<<interface>> FurnitureFactory 
+properties :
+            + createChair(): Chair :- note that in this case the Chair is the return which implement an interface 
+            + createCoffeeTable(): CoffeeTable
+            + createSofa(): Sofa 
+
+then this abstractFactory shall have 
+<<class VictorianFurnitureFactory>>
+properties :
+            + createChair(): returns a Chair
+            + createCoffeeTable(): CoffeeTable
+            + createSofa() : Sofa
+
+<<class ModernFurnitureFactory>>
+properties:
+           + createChair(): returns a Chair
+           + createCoffeeTable(): CoffeeTable
+           + createSofa() : Sofa 
+
+
+the client code has to work with both the factories and the product via their respective abstract interfaces.this allows the change of type of a factory that you pass to the client code as well as the variant that the client receieves without 
+breaking the actual code
+

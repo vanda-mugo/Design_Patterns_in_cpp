@@ -128,3 +128,101 @@ Constructing derived
 Destructing derived
 Destructing base
 */
+
+
+// this basically occurs when we have a situation in which a Base class object is referenced as a derived class object 
+// that is because of polymorphism 
+
+
+/*
+the above illustrates what happens with the above 
+*/
+
+class Base
+{
+public:
+	Base()
+	{
+		std::cout<< "base Constructor" << std::endl;
+	}
+	virtual ~Base()
+	{
+		std::cout << " Base destructor " << std::endl;
+	}
+};
+
+class Derived : public Base
+{
+	public:
+	Derived()
+	{
+		std::cout << " derived constructor " << std::endl;
+	}
+	~Derived()
+	{
+		std::cout << "Derived destructor" << std::endl;
+	}
+
+};
+
+// note that in c++ if you dont define the access specifier of a member they default to private access 
+//
+
+int main()
+{
+	// the first case we shall create a base class object and delete it expecting base constructor and destructors to be called 
+	Base * base = new Base(); // dynamic memory allocation on the heap using new 
+	delete base;
+
+	Derived * derived{nullptr};
+	derived = new Derived();
+	delete derived;
+
+	// now with the third scenario we shall have some form of polymorphic activity where a pointer of base references an object of the subclass
+	Base * baseDerived = new Derived();
+	delete baseDerived;
+	return 0;
+
+}
+
+
+
+/*
+output is as follows 
+
+base constructor
+base destructor
+
+base constructor 
+derived constructor 
+derived destructor 
+base destructor 
+
+base constructor 
+derived constructor
+base destructor 
+*/
+
+/* 
+when you create the Base object as a pointer to the derived object then this is the polymorhic 
+so when you call delete on this object of the class Base that however points to the derived object 
+so the Base destructor doesnt know that there may be an override somewhere or there might be other 
+implementations of the base destructor
+this occurs when you dont include the virtual keyword 
+
+
+output if virtual is included in the base class destructor 
+base Constructor
+ Base destructor
+
+base Constructor
+ derived constructor
+Derived destructor
+ Base destructor
+ 
+base Constructor
+ derived constructor
+Derived destructor
+ Base destructor
+
+ */

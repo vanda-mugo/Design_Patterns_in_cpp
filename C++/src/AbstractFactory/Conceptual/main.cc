@@ -60,7 +60,11 @@ class AbstractProductB
    * Product B is able to do its own thing...
    */
  public:
-  virtual ~AbstractProductB(){};
+  virtual ~AbstractProductB(){};//this is the virtual destructor .a virtual destructor for the abstract class that is AbstractProductB
+  // this makes a defined way of where if the subclass object is deleted it will follow the defined reverse order
+  // reverse order of constructor call that is where in constructor the base class is called first before the subclass is called and in this
+  // what happens is that in the defined virtual destructor the subclass is called first before the base class is called 
+
   virtual std::string UsefulFunctionB() const = 0;
   /**
    * ...but it also can collaborate with the ProductA.
@@ -69,6 +73,8 @@ class AbstractProductB
    * same variant and thus, compatible.
    */
   virtual std::string AnotherUsefulFunctionB(const AbstractProductA &collaborator) const = 0;
+  // const means that it doesnot alter the input parameter that is the const reference to AbstractProductA
+
 };
 
 /**
@@ -76,7 +82,8 @@ class AbstractProductB
  */
 class ConcreteProductB1 : public AbstractProductB {
  public:
-  std::string UsefulFunctionB() const override {
+  std::string UsefulFunctionB() const override 
+  {
     return "The result of the product B1.";
   }
   /**
@@ -84,7 +91,8 @@ class ConcreteProductB1 : public AbstractProductB {
    * Product A1. Nevertheless, it accepts any instance of AbstractProductA as an
    * argument.
    */
-  std::string AnotherUsefulFunctionB(const AbstractProductA &collaborator) const override {
+  std::string AnotherUsefulFunctionB(const AbstractProductA &collaborator) const override 
+  {
     const std::string result = collaborator.UsefulFunctionA();
     return "The result of the B1 collaborating with ( " + result + " )";
   }
@@ -114,7 +122,8 @@ class ConcreteProductB2 : public AbstractProductB {
  * variants, but the products of one variant are incompatible with products of
  * another.
  */
-class AbstractFactory {
+class AbstractFactory 
+{
  public:
   virtual AbstractProductA *CreateProductA() const = 0;
   virtual AbstractProductB *CreateProductB() const = 0;
@@ -126,12 +135,15 @@ class AbstractFactory {
  * that signatures of the Concrete Factory's methods return an abstract product,
  * while inside the method a concrete product is instantiated.
  */
-class ConcreteFactory1 : public AbstractFactory {
+class ConcreteFactory1 : public AbstractFactory 
+{
  public:
-  AbstractProductA *CreateProductA() const override {
+  AbstractProductA *CreateProductA() const override 
+  {
     return new ConcreteProductA1();
   }
-  AbstractProductB *CreateProductB() const override {
+  AbstractProductB *CreateProductB() const override 
+  {
     return new ConcreteProductB1();
   }
 };
@@ -139,12 +151,15 @@ class ConcreteFactory1 : public AbstractFactory {
 /**
  * Each Concrete Factory has a corresponding product variant.
  */
-class ConcreteFactory2 : public AbstractFactory {
+class ConcreteFactory2 : public AbstractFactory 
+{
  public:
-  AbstractProductA *CreateProductA() const override {
+  AbstractProductA *CreateProductA() const override 
+  {
     return new ConcreteProductA2();
   }
-  AbstractProductB *CreateProductB() const override {
+  AbstractProductB *CreateProductB() const override 
+  {
     return new ConcreteProductB2();
   }
 };
@@ -155,7 +170,8 @@ class ConcreteFactory2 : public AbstractFactory {
  * product subclass to the client code without breaking it.
  */
 
-void ClientCode(const AbstractFactory &factory) {
+void ClientCode(const AbstractFactory &factory) 
+{
   const AbstractProductA *product_a = factory.CreateProductA();
   const AbstractProductB *product_b = factory.CreateProductB();
   std::cout << product_b->UsefulFunctionB() << "\n";
@@ -176,3 +192,12 @@ int main() {
   delete f2;
   return 0;
 }
+
+
+/*
+this comes to play when you have or want to create a family of products that is lets say a family of variants
+lets say you want a whole set of furniture that is of victorian style, so the factory should produce you a whole 
+set of different variants of the victorian style as defined in the product family 
+*/
+
+// TO INCLUDE THE NECESSARY DELETERS
