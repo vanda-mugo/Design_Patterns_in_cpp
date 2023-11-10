@@ -12,23 +12,38 @@
  * Each distinct product of a product family should have a base interface. All
  * variants of the product must implement this interface.
  */
-class AbstractProductA {
+
+/*
+the above is a product family abstract interface
+this is the abstract interface for productA  
+*/
+
+class AbstractProductA 
+{
  public:
-  virtual ~AbstractProductA(){};
-  virtual std::string UsefulFunctionA() const = 0;
+  virtual ~AbstractProductA(){}; // virtual destructor
+  virtual std::string UsefulFunctionA() const = 0;// UsefulFunction which is a virtual method that returns the string
+  // this method will be implemented in the variant product type that will implement this interface 
 };
 
 /**
  * Concrete Products are created by corresponding Concrete Factories.
  */
-class ConcreteProductA1 : public AbstractProductA {
+
+// the above is a class that implements AbstractProductA interface and returns string related to the product A1, ConcreteProductA1 returns
+// the productA1 is the product created by the concreteProductA1
+class ConcreteProductA1 : public AbstractProductA 
+{
  public:
   std::string UsefulFunctionA() const override {
     return "The result of the product A1.";
   }
 };
 
-class ConcreteProductA2 : public AbstractProductA {
+
+// another implementation of the AbstractProductA which creates the product that is A2
+class ConcreteProductA2 : public AbstractProductA 
+{
   std::string UsefulFunctionA() const override {
     return "The result of the product A2.";
   }
@@ -39,7 +54,8 @@ class ConcreteProductA2 : public AbstractProductA {
  * with each other, but proper interaction is possible only between products of
  * the same concrete variant.
  */
-class AbstractProductB {
+class AbstractProductB 
+{
   /**
    * Product B is able to do its own thing...
    */

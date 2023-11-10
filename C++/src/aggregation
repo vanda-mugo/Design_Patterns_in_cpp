@@ -1,0 +1,84 @@
+Aggregation is a specialized type of association that represents
+“one-to-many”, “many-to-many” or “whole-part” relations
+between multiple objects.
+
+Usually, under aggregation, an object “has” a set of other
+objects and serves as a container or collection. The component
+can exist without the container and can be linked to several
+containers at the same time.
+
+In UML the aggregation relationship
+is shown by a line with an empty diamond at the
+container end and an arrow at the end pointing toward the
+component.
+
+While we talk about relations between objects, keep in mind
+that UML represents relations between classes. It means that a
+university object might consist of multiple departments even
+though you see just one “block” for each entity in the diagram.
+
+In C++, aggregation is a process in which one class defines another class as any entity reference. It is another way to reuse the class. It is a form of association that represents HAS-A relationship.
+
+Let's see an example of aggregation where Employee class has the reference of Address class as data member. In such way, it can reuse the members of Address class.
+
+
+    #include <iostream>  
+    using namespace std;  
+    class Address {  
+        public:  
+       string addressLine, city, state;    
+         Address(string addressLine, string city, string state)    
+        {    
+            this->addressLine = addressLine;    
+            this->city = city;    
+            this->state = state;    
+        }    
+    };  
+    class Employee    
+        {    
+            private:  
+            Address* address;  //Employee HAS-A Address   
+            public:  
+            int id;    
+            string name;    
+            Employee(int id, string name, Address* address)    
+           {    
+               this->id = id;    
+               this->name = name;    
+               this->address = address;    
+           }    
+         void display()    
+           {    
+               cout<<id <<" "<<name<< " "<<     
+                 address->addressLine<< " "<< address->city<< " "<<address->state<<endl;    
+           }    
+       };   
+    int main(void) {  
+        Address a1= Address("C-146, Sec-15","Noida","UP");    
+        Employee e1 = Employee(101,"Nakul",&a1);    
+                e1.display();   
+       return 0;  
+    }  
+
+
+    In C++, aggregation is a special type of association between classes that represents a weaker relationship than a composition. In an aggregation relationship, one class is a container for objects of another class, but it is not responsible for the creation or destruction of those objects. This relationship is often referred to as a “has-a” relationship, because one class has objects of another class as members.
+
+    An aggregation relationship is represented in C++ as an object of one class containing pointers to objects of another class. The contained objects are said to be part of the containing object, but they can exist independently of the containing object. If the containing object is destroyed, the contained objects are not automatically destroyed along with it.
+
+    For example, consider a class Department and a class Employee. If a department "has many" employees, we can say that there is an aggregation relationship between the two classes. We can implement this aggregation relationship in C++ as follows:
+
+    class Employee {
+    // Class members and methods
+    };
+
+    class Department {
+        std::vector<Employee*> employees; // dapartment HAS A
+        // Class members and methods
+    };
+
+
+    In this example, an instance of the Department class contains pointers to objects of the Employee class, representing the aggregation relationship between the two classes. The contained objects employees can exist independently of the containing object Department, and if the Department object is destroyed, the Employee objects are not automatically destroyed along with it.
+
+    in this case in UML representation the diamond would be on the Employee side while the Deparment would be the class 
+    pointed too
+    

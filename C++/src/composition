@@ -1,0 +1,89 @@
+Composition is a specific kind of aggregation, where one object
+is composed of one or more instances of the other.the distinction 
+between the relation and the others is that the component can only
+exist as part of the container .
+
+In UML the composition
+relationship is drawn the same as for aggregation, but
+with a filled diamond at the arrow’s base.
+
+The composition is a part of aggregation, and it portrays the whole-part relationship. It depicts dependency between a composite (parent) and its parts (children), which means that if the composite is discarded, so will its parts get deleted. It exists between similar objects.
+
+composition relationship is also called part whole relationship in which the part component can only be a part of a 
+single object simultaneously. in composition relationship the part component will be created when the object is created and will be destroyed when the object is destroyed. a persons body and heart is a good example of part whole relationship
+where if the heart is part of a persons body then it cannot be part of someone elses body at one time 
+
+to be qualified as composition the part and the object must follow the relationship as described above 
+
+1. the part or the child component( referred to as member ) belongs to a single object ( also called class )
+2. the part component can show its presence with the help of the object 
+3. the part(member ) component is the element of the object 
+4. the part component needs to learn about the objects presence
+
+
+class A {
+    // Body of class A.
+};
+
+class B{
+    // Body of class B.
+    A obj1;// an object of class A 
+
+public:
+// overloaded constructor that in this case initialises the attribute of class B that is obj1 to be equal to argument2
+    B(arguments1) : obj1(arguments2);
+};
+int main(){
+}
+
+Here, in the above syntax, it is shown how we can implement composition in C++ where we have used two classes, class A and class B. class B will use the objects of class A as its member variables. Therefore, class A is the simpler class accessed by the complex class class B.
+
+
+Now, Let's look at an example to understand the concepts more clearly:
+
+Code :
+
+#include <iostream>
+using namespace std;
+
+class A {
+private:
+    int a;
+
+public:
+    void setValue(int b) {
+        a = b;
+    }
+
+    void getSum(int c) {
+        cout << "Sum of " << a << " and " << c << " = " << a + c << endl;
+    }
+};
+class B {
+public:
+    A x;// member of class A
+    void showResult() {
+        x.getSum(10);
+    }
+};
+
+int main() {
+    B obj1;
+    obj1.x.setValue(10);
+    obj1.x.getSum(50);
+    obj1.showResult();
+}
+
+output 
+Sum of 10 and 50 = 60
+Sum of 10 and 10 = 20
+
+Explanation :
+
+In the above example, we have two classes, class A and class B. Inside class A, we have one private data member or member variable a, which is of integer type, and two member functions of the class setValue() and getSum(). Now, in class B, we have an object of class A that is x and a member function showResult().
+
+The setValue() method assigns the value passed in the function to the member variable a. The next member function getSum() adds the value of the parameter passed to it with the member variable a, and then the function prints the value after addition.
+
+In class B, we have only one member function showResult() which uses the object of class A that is x which shows the composition relationship between class A and class Band invokes the member function inside the class A with a different value that is 10. Then the getSum() prints the value passed as an argument and the member variable a after addition.
+
+Inside the main() method, we have created an object of class B that is obj1. Now, the member function setValue()and getSum() of class A having object a which is also a sub-object of object obj1 is invoked using the two dot operators with 10 and 5 as the parameter respectively. In the same way, one dot operator is used to call the member function showResult() of the same class that is class B.

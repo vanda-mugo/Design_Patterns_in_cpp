@@ -45,3 +45,15 @@ that happens to be classCarLoc
 
 
 
+class Professor is
+field Student student
+ // ...
+method teach(Course c) is
+ // ...
+ this.student.remember(c.getKnowledge())
+
+Take a look at the teach method. It takes an argument of the
+Course class, which is then used in the body of the method. If
+someone changes the getKnowledge method of the Course
+class (alters its name, or adds some required parameters, etc.)
+our code will break. This is called a dependency.

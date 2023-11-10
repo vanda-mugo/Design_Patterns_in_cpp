@@ -1,0 +1,50 @@
+this refers to relationship in which one object uses or interacts with another. in UML this relationship is shown with 
+a simple arrow drawn from an object and pointing at the object it uses.
+
+In C/C++ domain modeling class diagrams, an association is a structural relationship that indicates that objects of 
+one classifier, such as a class and interface, are connected and can navigate to objects of another classifier.
+An association connects two classifiers: the supplier classifier and the consumer classifier
+
+For example, a Customer class has a single association (1) to an Account class, indicating that each Account 
+instance is owned by one Customer instance. if you have an account you can locate the owning customer of that 
+account, and for a given customer you can find the account of that customer 
+
+In C++, an association is a relationship between two classes where one class “has a” relationship with the other class.
+In other words, an instance of one class has an instance of the other class as a member. This is a way of modeling 
+real-world relationships between objects in an object-oriented programming language.
+
+class Professor is
+field Student student
+ // ...
+method teach(Course c) is
+ // ...
+ this.student.remember(c.getKnowledge())
+
+
+Now, look at the student field and how it’s used in the
+teach method. We can say for sure that the Student class
+is also a dependency for the Professor : if the method
+remember changes, the Professor ’s code will break. However,
+since the student field is always accessible to any method
+of the Professor , the Student class is not just a dependency,
+but also an association.
+
+
+example 2
+For example, consider a class “Person” and a class “Address”. If a person “has an” address, we can say that there is an 
+association between the two classes. We can implement this association in C++ as follows:
+
+class Address {
+  // Class members and methods
+};
+
+class Person {
+  Address address;
+  // Class members and methods
+};
+
+
+In this example, an instance of the “Person” class has an instance of the “Address” class as a member, 
+representing the association between the two classes. The relationship between the two classes can also 
+be represented using a UML (Unified Modeling Language) diagram, which is a graphical representation of 
+the classes and their relationships.
