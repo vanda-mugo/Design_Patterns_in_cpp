@@ -17,12 +17,14 @@ that UML represents relations between classes. It means that a
 university object might consist of multiple departments even
 though you see just one “block” for each entity in the diagram.
 
-In C++, aggregation is a process in which one class defines another class as any entity reference. It is another way to reuse the class. It is a form of association that represents HAS-A relationship.
+In C++, aggregation is a process in which one class defines another class as any entity reference. 
+It is another way to reuse the class. It is a form of association that represents HAS-A relationship.
 
-Let's see an example of aggregation where Employee class has the reference of Address class as data member. In such way, it can reuse the members of Address class.
+Let's see an example of aggregation where Employee class has the reference of Address class as data member.
+ In such way, it can reuse the members of Address class.
 
 
-    #include <iostream>  
+    #include <iostream>
     using namespace std;  
     class Address {  
         public:  
@@ -61,11 +63,16 @@ Let's see an example of aggregation where Employee class has the reference of Ad
     }  
 
 
-    In C++, aggregation is a special type of association between classes that represents a weaker relationship than a composition. In an aggregation relationship, one class is a container for objects of another class, but it is not responsible for the creation or destruction of those objects. This relationship is often referred to as a “has-a” relationship, because one class has objects of another class as members.
+    In C++, aggregation is a special type of association between classes that represents a weaker relationship than a composition. 
+    In an aggregation relationship, one class is a container for objects of another class, but it is not responsible for the creation or destruction of those objects. 
+    This relationship is often referred to as a “has-a” relationship, because one class has objects of another class as members.
 
-    An aggregation relationship is represented in C++ as an object of one class containing pointers to objects of another class. The contained objects are said to be part of the containing object, but they can exist independently of the containing object. If the containing object is destroyed, the contained objects are not automatically destroyed along with it.
+    An aggregation relationship is represented in C++ as an object of one class containing pointers to objects of another class.
+     The contained objects are said to be part of the containing object, but they can exist independently of the containing object. If the containing object is destroyed,
+      the contained objects are not automatically destroyed along with it.
 
-    For example, consider a class Department and a class Employee. If a department "has many" employees, we can say that there is an aggregation relationship between the two classes. We can implement this aggregation relationship in C++ as follows:
+    For example, consider a class Department and a class Employee. If a department "has many" employees,
+     we can say that there is an aggregation relationship between the two classes. We can implement this aggregation relationship in C++ as follows:
 
     class Employee {
     // Class members and methods
@@ -77,7 +84,9 @@ Let's see an example of aggregation where Employee class has the reference of Ad
     };
 
 
-    In this example, an instance of the Department class contains pointers to objects of the Employee class, representing the aggregation relationship between the two classes. The contained objects employees can exist independently of the containing object Department, and if the Department object is destroyed, the Employee objects are not automatically destroyed along with it.
+    In this example, an instance of the Department class contains pointers to objects of the Employee class, representing the aggregation relationship between the 
+    two classes. The contained objects employees can exist independently of the containing object Department, and if the Department object is destroyed,
+     the Employee objects are not automatically destroyed along with it.
 
     in this case in UML representation the diamond would be on the Employee side while the Deparment would be the class 
     pointed too

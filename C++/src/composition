@@ -31,7 +31,7 @@ class B{
 
 public:
 // overloaded constructor that in this case initialises the attribute of class B that is obj1 to be equal to argument2
-    B(arguments1) : obj1(arguments2);
+    B(arguments1) : obj1(arguments2){};
 };
 int main(){
 }
