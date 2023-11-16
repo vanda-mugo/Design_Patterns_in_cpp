@@ -19,15 +19,20 @@
  * always follow the same interface.
  */
 
-class Product1{
+class Product1
+{
     public:
     std::vector<std::string> parts_;
-    void ListParts()const{
+    void ListParts()const
+    {
         std::cout << "Product parts: ";
         for (size_t i=0;i<parts_.size();i++){
-            if(parts_[i]== parts_.back()){
+            if(parts_[i]== parts_.back())
+            {
                 std::cout << parts_[i];
-            }else{
+            }
+            else
+            {
                 std::cout << parts_[i] << ", ";
             }
         }
@@ -40,7 +45,8 @@ class Product1{
  * The Builder interface specifies methods for creating the different parts of
  * the Product objects.
  */
-class Builder{
+class Builder
+{
     public:
     virtual ~Builder(){}
     virtual void ProducePartA() const =0;

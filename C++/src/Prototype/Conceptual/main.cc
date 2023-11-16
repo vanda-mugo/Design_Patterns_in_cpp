@@ -9,7 +9,9 @@ using std::string;
 // Intent: Lets you copy existing objects without making your code dependent on
 // their classes.
 
-enum Type {
+
+enum Type 
+{
   PROTOTYPE_1 = 0,
   PROTOTYPE_2
 };
@@ -19,19 +21,21 @@ enum Type {
  * with different types will be cloned.
  */
 
-class Prototype {
- protected:
+class Prototype 
+{
+ protected:// protected variables of the class Prototype 
   string prototype_name_;
   float prototype_field_;
 
  public:
-  Prototype() {}
+  Prototype() {} // default constructor 
   Prototype(string prototype_name)
-      : prototype_name_(prototype_name) {
-  }
+      : prototype_name_(prototype_name) 
+      {}
   virtual ~Prototype() {}
   virtual Prototype *Clone() const = 0;
-  virtual void Method(float prototype_field) {
+  virtual void Method(float prototype_field) 
+  {
     this->prototype_field_ = prototype_field;
     std::cout << "Call Method from " << prototype_name_ << " with field : " << prototype_field << std::endl;
   }
@@ -51,8 +55,8 @@ class ConcretePrototype1 : public Prototype {
 
  public:
   ConcretePrototype1(string prototype_name, float concrete_prototype_field)
-      : Prototype(prototype_name), concrete_prototype_field1_(concrete_prototype_field) {
-  }
+      : Prototype(prototype_name), concrete_prototype_field1_(concrete_prototype_field) 
+      {}
 
   /**
    * Notice that Clone method return a Pointer to a new ConcretePrototype1

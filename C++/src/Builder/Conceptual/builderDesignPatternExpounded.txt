@@ -1,0 +1,3 @@
+The Builder Design Pattern is a creational pattern that separates the construction of a complex object from its representation, allowing the same construction process to create various representations.
+ Here's a simple example in C++:
+
