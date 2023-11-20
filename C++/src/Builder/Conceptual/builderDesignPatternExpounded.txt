@@ -1,3 +1,51 @@
 The Builder Design Pattern is a creational pattern that separates the construction of a complex object from its representation, allowing the same construction process to create various representations.
  Here's a simple example in C++:
 
+the main summary of the builder design pattern is as follows 
+
+The Builder Design Pattern is a creational design pattern that separates the construction of a complex object from its representation. 
+This pattern allows you to create different representations of an object by providing a step-by-step construction process.
+ The key idea is to have a director class that orchestrates the construction using a builder interface,
+  and concrete builder classes that implement the steps to construct different variations of the object.
+
+Here are the main components involved in the Builder Design Pattern:
+
+    Product:
+        Represents the complex object to be constructed. It often has multiple parts or attributes.
+
+    Builder:
+        An abstract interface that declares the construction steps for building the product.
+        Typically, a builder interface includes methods for building each part of the product.
+
+    Concrete Builder:
+        Implements the builder interface and provides concrete implementations for constructing different variations of the product.
+        Each concrete builder knows how to build a specific version of the product.
+
+    Director:
+        Orchestrates the construction process using a builder. It doesn't know the specifics of how each part is constructed; it relies on the builder's interface.
+
+Now, let's break down the process of using the Builder Design Pattern:
+
+    Client Code:
+        The client code creates a director and a builder object.
+        It then passes the builder to the director.
+
+    Director:
+        The director uses the builder to construct the product.
+        It calls the builder's methods to build each part of the product.
+
+    Builder:
+        The builder provides concrete implementations for building each part of the product.
+        It returns the final product when the construction is complete.
+
+    Product:
+        The product is the complex object constructed by the builder.
+        It can have different configurations based on the concrete builder used.
+
+
+
+
+
+
+nb: the basic idea is to have a director class that orchestrates the building process using a builder interface and having 
+concrete builders that basically implements this interface
