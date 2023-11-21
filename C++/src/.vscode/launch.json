@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/25479/Documents/cpp design patterns/Design_Patterns_in_cpp/C++/src/Builder/Conceptual",
-      "program": "c:/Users/25479/Documents/cpp design patterns/Design_Patterns_in_cpp/C++/src/Builder/Conceptual/build/Debug/outDebug",
+      "cwd": "c:/Users/25479/Documents/cpp design patterns/Design_Patterns_in_cpp/C++/src",
+      "program": "c:/Users/25479/Documents/cpp design patterns/Design_Patterns_in_cpp/C++/src/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

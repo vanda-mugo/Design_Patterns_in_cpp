@@ -4,6 +4,7 @@
 
 using std::string;
 
+
 // Prototype Design Pattern
 //
 // Intent: Lets you copy existing objects without making your code dependent on
@@ -28,12 +29,17 @@ class Prototype
   float prototype_field_;
 
  public:
-  Prototype() {} // default constructor 
+  Prototype() 
+  {} // default constructor 
+
   Prototype(string prototype_name)
       : prototype_name_(prototype_name) 
       {}
-  virtual ~Prototype() {}
-  virtual Prototype *Clone() const = 0;
+
+  virtual ~Prototype() {} // a virtual destructor
+  virtual Prototype *Clone() const = 0; // the clone method that returns a prototype pointer 
+
+  // a prototype_field setter method that sets the value for the protected variable
   virtual void Method(float prototype_field) 
   {
     this->prototype_field_ = prototype_field;
@@ -47,9 +53,16 @@ class Prototype
  * have pointers in your properties for ex: String* name_ ,you will need to
  * implement the Copy-Constructor to make sure you have a deep copy from the
  * clone method
+ * 
+ * recall that the deep pointer unlike shallow pointer is when the copy  constructor basically
+ * allocates memory on the heap for the data variable that is being copied and in this case the value 
+ * passed as the parameter in the copy constructor is dereferenced so that the value of the variable is the one 
+ * that is copied and not what the variable is pointing to inlike shallow copy where the new and old object still point to the same 
+ * memory location for the given data type 
  */
 
-class ConcretePrototype1 : public Prototype {
+class ConcretePrototype1 : public Prototype 
+{
  private:
   float concrete_prototype_field1_;
 
@@ -64,20 +77,25 @@ class ConcretePrototype1 : public Prototype {
    * to free that memory. I you have smart pointer knowledge you may prefer to
    * use unique_pointer here.
    */
-  Prototype *Clone() const override {
+  Prototype *Clone() const override 
+  {
+    // in this case a ConcretePrototype() is returned which in this case is created by the default constructor 
     return new ConcretePrototype1(*this);
   }
 };
 
-class ConcretePrototype2 : public Prototype {
+class ConcretePrototype2 : public Prototype 
+{
  private:
   float concrete_prototype_field2_;
 
  public:
   ConcretePrototype2(string prototype_name, float concrete_prototype_field)
-      : Prototype(prototype_name), concrete_prototype_field2_(concrete_prototype_field) {
-  }
-  Prototype *Clone() const override {
+      : Prototype(prototype_name), concrete_prototype_field2_(concrete_prototype_field) 
+      {}
+
+  Prototype *Clone() const override 
+  {
     return new ConcretePrototype2(*this);
   }
 };
@@ -88,12 +106,14 @@ class ConcretePrototype2 : public Prototype {
  * existing ones and clone those.
  */
 
-class PrototypeFactory {
+class PrototypeFactory 
+{
  private:
   std::unordered_map<Type, Prototype *, std::hash<int>> prototypes_;
 
  public:
-  PrototypeFactory() {
+  PrototypeFactory() 
+  {
     prototypes_[Type::PROTOTYPE_1] = new ConcretePrototype1("PROTOTYPE_1 ", 50.f);
     prototypes_[Type::PROTOTYPE_2] = new ConcretePrototype2("PROTOTYPE_2 ", 60.f);
   }
@@ -103,7 +123,8 @@ class PrototypeFactory {
    * knowelege will be better to use it here.
    */
 
-  ~PrototypeFactory() {
+  ~PrototypeFactory() 
+  {
     delete prototypes_[Type::PROTOTYPE_1];
     delete prototypes_[Type::PROTOTYPE_2];
   }
@@ -112,12 +133,14 @@ class PrototypeFactory {
    * Notice here that you just need to specify the type of the prototype you
    * want and the method will create from the object with this type.
    */
-  Prototype *CreatePrototype(Type type) {
+  Prototype *CreatePrototype(Type type) 
+  {
     return prototypes_[type]->Clone();
   }
 };
 
-void Client(PrototypeFactory &prototype_factory) {
+void Client(PrototypeFactory &prototype_factory) 
+{
   std::cout << "Let's create a Prototype 1\n";
 
   Prototype *prototype = prototype_factory.CreatePrototype(Type::PROTOTYPE_1);
