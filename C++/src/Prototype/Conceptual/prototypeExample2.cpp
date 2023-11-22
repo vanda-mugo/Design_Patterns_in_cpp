@@ -65,7 +65,7 @@ class Cat : public Animal
     }
     // so note that we are passing the *this which in this case is a dereferenced pointer 
     /*
-    the purpose of clone method is to produce a copy of the existing object, and creating a new instance is a fundamental part of teh process
+    the purpose of clone method is to produce a copy of the existing object, and creating a new instance is a fundamental part of the process
     
     so lets take a close look at the 'clone' method 
 
@@ -74,9 +74,25 @@ class Cat : public Animal
         return new Cat(*this);
     }
 
+    In C++, the this pointer represents a pointer to the object for which a member function is called. In the context of a copy constructor,
+    the this pointer refers to the object being copied. The copy constructor is a special member function used to create a new object as a copy 
+    of an existing object. When the copy constructor is invoked, the this pointer points to the object being copied.
+
     here the new Cat(*this) is calling the copy constructor of the Cat class to create a new instance of the Cat. the *this part is a reference 
-    to the current instance of Cat object with which the method has been called 
-    
+    to the current instance of Cat object with which the method has been called and its used to initialise based on the current state of the 
+    existing object.
+
+    1. Initialization: When you create a new object, its initial state needs to be set. The copy constructor is responsible for initializing 
+    the new object's state based on the existing object's state. This ensures that the cloned object is an independent copy of the original.
+
+    2. Polymorphism: The clone method is declared in the base class (Animal), and it returns a pointer to the base class (Animal). However,
+    the actual type of the object being cloned is a derived class (Dog). By calling the copy constructor of the derived class (Dog),
+    you ensure that the correct type of object is created and that polymorphism is preserved.
+
+    3. Deep Copy: Depending on the complexity of the object and its components, a deep copy may be required to ensure that all the 
+    internal state of the object is duplicated. The copy constructor is responsible for performing a deep copy if needed.
+
+
     */
 
     void makeSound() const override
@@ -93,6 +109,7 @@ int main()
 
     Animal* originalCat = new Cat();
     Animal* clonedCat = originalCat->clone();
+    // in the case here this will refer to the originalCat object that is being created
 
     originalDog->makeSound();
     clonedDog->makeSound();
