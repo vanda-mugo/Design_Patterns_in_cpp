@@ -16,10 +16,13 @@ class AbstractConcrete : public AbstractDesign
 
 public:
     //default constructor 
-    AbstractConcrete(int value = 4, double doubleVal = 3.4, const char* string = "cool", std::string strvalue = " test string ")
-    :value(value), amount(doubleVal), charData(new char[strlen(string) + 1]), strVal(new std::String(strvalue))
+    // note that in the above constructor the initilisation of the  char variable as const char* strVal1 
+    // this is because strcpy requires c style string ( a pointer to char)
+
+    AbstractConcrete(int value = 4, double doubleVal = 3.4, const char* strval1 = "cool", std::string strvalue = " test string ")
+    :value(value), amount(doubleVal), charData(new char[strlen(strval1) + 1]), strVal(new std::string(strvalue))
     {
-        strcpy(this->charData, string);
+        strcpy(this->charData, strval1);
     }
     // copy constuctor 
     AbstractConcrete( const AbstractConcrete& source) 
@@ -33,13 +36,13 @@ public:
         return new AbstractConcrete(*this);
     }
 
-    void printAbstractInfo()
+    void printAbstractInfo() const override
     {
         std::cout << " val of the string is " << *this->strVal << std::endl;
         std::cout << " address of the string is " << this->strVal << std::endl;
         std::cout << " value of the char Data is " << this->charData << std::endl;
     }
-    ~AbstractConcrete()
+    ~AbstractConcrete() override
     {
         delete [] charData;
         delete strVal;
@@ -59,13 +62,13 @@ int main()
     std::cout << " obj 1" << std::endl;
     AbstractConcrete obj1;
     obj1.printAbstractInfo();
-    std::cout << " obj 2 " << std::endl;
+    std::cout << " \nobj 2 " << std::endl;
     AbstractConcrete obj2(20, 39.4, "guess", " this ");
     obj2.printAbstractInfo();
-    std::cout << " obj 3 " << std::endl;
+    std::cout << "\n obj 3 " << std::endl;
     AbstractConcrete obj3 = obj2;
     obj3.printAbstractInfo();
-    std::cout << " obj 4 " << std::endl;
+    std::cout << "\n obj 4 " << std::endl;
     AbstractConcrete obj4 = obj1;
     obj4.printAbstractInfo();
     return 0;
