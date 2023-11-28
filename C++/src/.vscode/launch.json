@@ -1,7 +1,6 @@
 {
   "version": "0.2.0",
   "configurations": [
-    
     {
       "name": "C/C++ Runner: Debug Session",
       "type": "cppdbg",
@@ -9,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/25479/Documents/cpp design patterns/Design_Patterns_in_cpp/C++/src/Prototype/Conceptual",
-      "program": "c:/Users/25479/Documents/cpp design patterns/Design_Patterns_in_cpp/C++/src/Prototype/Conceptual/build/Debug/outDebug",
+      "cwd": "c:/Users/25479/Documents/cpp design patterns/Design_Patterns_in_cpp/C++/src",
+      "program": "c:/Users/25479/Documents/cpp design patterns/Design_Patterns_in_cpp/C++/src/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
