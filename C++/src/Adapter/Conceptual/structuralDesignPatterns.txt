@@ -1,0 +1,50 @@
+STRUCTURAL DESIGN PATTERNS
+
+structural pattern explains how to assemble objects and classes into larger strructures , while keeping 
+this structures flexible and efficient 
+
+the design patterns in this are 
+
+Adapter : Allows objects with incompatible interfaces to collaborate 
+
+Bridge : lets you split large class or set of closely related classes into two separate hierachies - Abstraction 
+and implementation which can be developed independently of each other 
+
+Composite : lets you compose objects into tree structres and then work with these structures as if they were 
+individual objects 
+
+Decorator : Lets you attach new behaviours to objects by placing these objects inside a special wrapper 
+object that contains the behaviours
+
+Facade : Provides a simplified interface to a library, a framework, or any other complex set of classes 
+
+FlyWeight : Lets you fit more objects into the available amount of RAM by sharing common parts of 
+state between multiple objects instead of keeping all the data in each object
+
+Proxy : Lets you provide a substitute or placeholder for another object. A proxy controls access to the 
+original object, allowing you to perform something either before or after the request gets through to the
+original object 
+
+
+
+// how to implement adapter 
+1. have two classes with incompatible interfaces
+
+service class which you cant change( often third party, legacy with a lot of existing dependencie)
+one or several client classes that would benefit from using the service class
+
+2. Declare the client interface and describe how clients communitcate with the service 
+
+3. Declare the adapter class and make it follow the client interface . 
+
+4. add a field to the adapter class to store a reference to the service object. common practice is to 
+initialise this field via teh constructor but sometimes more convenient to pass it to the adapter when 
+calling its method 
+
+5. one by one implement all methods of the client interface in the adapter class. the adapter should delegate
+most real work to the service object handling only the interface or the data format conversion 
+
+
+6. clients should use the adapter via teh client interface. this will let you change or extend the adapter without 
+affecting the client code
+

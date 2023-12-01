@@ -54,6 +54,18 @@ public:
 
 
 };
+/*
+intializing static member variables such as Singleton Singleton::m_Instance and std::mutex Singleton::m_Mutex
+is necessary to ensure that they have well defined initial values when program starts executing .
+
+Static members are typically initialized outside the class definition to avoid potential issues related to 
+order of initialization in the presence of multiple translation units (source files).
+The initialization order of static variables across translation units is not guaranteed, 
+and using the static members inside their own class for initialization may lead to undefined behavior.
+
+Initializing the static members outside the class definition ensures that they are initialized before 
+any code is executed, providing a reliable and consistent starting state for the program.
+*/
 
 Singleton* Singleton::m_Instance{nullptr};
 std::mutex Singleton::m_Mutex;
