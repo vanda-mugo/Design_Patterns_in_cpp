@@ -1,0 +1,1 @@
+the above repository has different applications and how the design patterns in OOP can be used in c++. within each design pattern is different examples of ready to run application as well as clear outlined explanation in comments 
